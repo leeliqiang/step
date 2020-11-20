@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #button .level-alert {
+            width: 380px;
+            min-height: 156px;
+            padding: 16px;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            position: absolute;
+            right: -1px;
+            bottom: 25px;
+
+            z-index: 101;
+            background: #fff;
+            -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .1);
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .1);
+            border-radius: 2px;
+            outline: none;
+            cursor: auto;
+        }
+
+        #button .level-alert .level-select-wrapped {
+            width: 100%;
+            height: 35px;
+            margin-top: 20px;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box {
+            width: 100%;
+            display: block;
+            height: 4px;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box .slider {
+            height: 4px;
+            position: relative;
+            width: 100%;
+        }
+
+        #button .level-alert,
+        #button .level-alert div,
+        #button .level-alert dl,
+        #button .level-alert form,
+        #button .level-alert li,
+        #button .level-alert ol,
+        #button .level-alert span,
+        #button .level-alert ul {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box .slider .progress {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            opacity: .6;
+            border-radius: 2px;
+            background: #eff0f3;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box .slider .point.active {
+            border-color: #fff;
+            background: #357ce1;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box .slider .point .level {
+            font-size: 12px;
+            color: #9aa5b5;
+            position: absolute;
+            top: 12px;
+            left: -10px;
+            right: 0;
+            margin: auto;
+            width: 30px;
+            text-align: center;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box .slider .point:first-of-type .level span {
+            position: absolute;
+            right: auto;
+            left: 10px;
+        }
+
+        #button .level-alert .level-select-wrapped-warn .slider-box .point.active {
+            background: #faad14 !important;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box .slider .point {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -3px;
+            border-radius: 50%;
+            border: 1px solid;
+            cursor: pointer;
+            z-index: 2;
+            border-color: #fff;
+            background: #e6ecf2;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box .slider .drag-bar {
+            left: 0;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 3;
+            width: 14px;
+            height: 14px;
+            border: 3px solid;
+            top: -5px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: pointer;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            border-color: #357ce1;
+            background: #fff;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box .slider .drag-bar-active {
+            border-color: #faad14 !important;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box .slider .drag-bar-panal {
+            position: absolute;
+            background: rgba(53, 124, 225, .2);
+            font-size: 12px;
+            color: #357ce1;
+            border-radius: 2px;
+            padding: 0 5px;
+            text-align: center;
+            min-width: 38px;
+            height: 16px;
+            left: -15px;
+            right: 0;
+            top: -26px;
+            margin: auto;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box .slider .drag-track {
+            width: 0;
+            left: 0;
+            position: absolute;
+            height: 4px;
+            z-index: 1;
+            cursor: pointer;
+            border-radius: 2px;
+            background: #357ce1;
+        }
+
+        #button .level-alert .level-select-wrapped-warn .slider-box .drag-track {
+            background: #faad14 !important;
+        }
+
+        #button .level-alert .level-select-wrapped-warn .slider-box .drag-bar-panal {
+            background: rgba(250, 173, 20, .2) !important;
+            color: #faad14 !important;
+        }
+
+        #button .level-alert .level-select-wrapped .slider-box .slider .drag-bar-panal {
+            position: absolute;
+            background: rgba(53, 124, 225, .2);
+            font-size: 12px;
+            color: #357ce1;
+            border-radius: 2px;
+            padding: 0 5px;
+            text-align: center;
+            min-width: 38px;
+            height: 16px;
+            left: -15px;
+            right: 0;
+            top: -26px;
+            margin: auto;
+        }
+
+        #button .level-alert-note {
+            background: rgba(224, 147, 0, .05);
+            border: 1px solid rgba(224, 147, 0, .3);
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: start;
+            align-items: start;
+            padding: 10px 16px;
+            font-size: 12px;
+            color: #1c242c;
+            letter-spacing: 0;
+            line-height: 20px;
+            text-align: left;
+        }
+
+        #button .level-alert .order-board-selected-button {
+            min-width: 72px;
+            height: 24px;
+            padding: 3px;
+            border: 1px solid;
+            font-size: 14px;
+            line-height: 16px;
+            background: transparent;
+        }
+
+        #button .level-alert-note img {
+            position: relative;
+            top: 2px;
+            margin-right: 4px;
+        }
+
+        .border-input {
+            border-color: #383f66 !important;
+        }
+
+        #button.blue-font {
+            color: #357ce1;
+        }
+
+        #button a {
+            color: #357ce1;
+        }
+
+        .order-board-selected-button {
+            min-width: 72px;
+            height: 24px;
+            padding: 3px;
+            border: 1px solid;
+            font-size: 14px;
+            line-height: 16px;
+            background: transparent;
+            outline: none;
+            cursor: pointer;
+            top: 300px;
+            left: 600px;
+            box-sizing: border-box;
+            border-radius: 2px;
+        }
+
+        .level-alert .level-alert-change-level-confirm .level-alert-change-level-confirm-left {
+            -ms-flex: 1 1;
+            flex: 1 1;
+        }
+
+        .level-alert-change-level-confirm-right {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .level-alert .level-alert-change-level-confirm .level-alert-change-level-confirm-cancel {
+            color: #357ce1;
+            cursor: pointer;
+        }
+
+        .level-alert .level-alert-change-level-confirm .level-alert-change-level-confirm-confirm {
+            background: #357ce1;
+            border-radius: 2px;
+            min-width: 60px;
+            padding: 0 16px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #fff;
+            margin-left: 32px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .level-alert-change-level-confirm {
+            margin-top: 16px;
+            font-size: 14px;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="button" style="position: relative;" class="border-input blue-font order-board-selected-button null">
+        1X
+        <div class="level-alert" style="display: none;  box-sizing: border-box;">
+            <div class="level-select-wrapped  ">
+                <div class="slider-box">
+                    <div class="slider"><i class="progress"></i>
+                        <div class="point active" style="left: 0px;">
+                            <div class="level "><span class="active-color">1X</span></div>
+                        </div>
+                        <div class="point " style="left: 34.1px;">
+                            <div class="level"><span class=""></span></div>
+                        </div>
+                        <div class="point " style="left: 68.2px;">
+                            <div class="level"><span class="">3X</span></div>
+                        </div>
+                        <div class="point " style="left: 102.3px;">
+                            <div class="level"><span></span></div>
+                        </div>
+                        <div class="point " style="left: 136.4px;">
+                            <div class="level"><span class="">10X</span></div>
+                        </div>
+                        <div class="point " style="left: 170.5px;">
+                            <div class="level"><span class=""></span></div>
+                        </div>
+                        <div class="point " style="left: 204.6px;">
+                            <div class="level"><span class="">30X</span></div>
+                        </div>
+                        <div class="point " style="left: 238.7px;">
+                            <div class="level"><span class=""></span></div>
+                        </div>
+                        <div class="point " style="left: 272.8px;">
+                            <div class="level"><span class="">75X</span></div>
+                        </div>
+                        <div class="point " style="left: 306.9px;">
+                            <div class="level"><span class=""></span></div>
+                        </div>
+                        <div class="point " style="left: 341px;">
+                            <div class="level"><span class="">125X</span></div>
+                        </div>
+                        <section class="drag-bar" style="transform: translateX(0px);"><span
+                                class="drag-bar-panal">1X</span>
+                        </section>
+                        <i class="drag-track" id="line" style="width:0px;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="level-alert-note"><img src="toast-warn.d7980d81.svg" alt="">
+                <div>
+                    <p>
+                        <p>温馨提示：倍数越高，<a href="" rel="noopener noreferrer" target="_blank" class="blue-font"
+                                one-link-mark="yes">
+                                调整系数</a>越高，发生<a href="" rel="noopener noreferrer" target="_blank" class="blue-font"
+                                one-link-mark="yes">
+                                强制平仓</a>的风险越高，请注意风险，理性投资。</p>
+                        <p>
+                        </p>
+                    </p>
+                    <p>使用大于20倍的倍数，需要先同意<a class="blue-font" one-link-mark="yes">高倍数协议</a></p>
+                </div>
+            </div>
+            <div class="level-alert-change-level-confirm">
+                <div class="level-alert-change-level-confirm-left"></div>
+                <div class="level-alert-change-level-confirm-right">
+                    <div class="level-alert-change-level-confirm-cancel">取消</div>
+                    <div class="level-alert-change-level-confirm-confirm">确定</div>
+                </div>
+            </div>
+
+        </div>
+
+    </button>
+
+
+
+
+
+
+
+    <script src="http://www.jq22.com/jquery/1.7.2/jquery.min.js"></script>
+    <script>
+        let step = 34.1;
+        let showStatus = false;
+        let arr = ['1x', '2x', '3x', '5x', '10x', '20x', '30x', '50x', '75x', '100x', '125x'];
+        var point = $('.point')
+
+
+
+
+        $('#button').on('click', function (event) {
+            // console.log(event);
+
+            $(".level-alert").show();
+
+
+        })
+        $('.level-alert-change-level-confirm-confirm').click((event) => {
+            $(".level-alert").hide();
+            event.stopPropagation()
+
+
+        })
+
+        point.click(
+            function () {
+                // console.log($(this).index());
+                let levelIndex = $(this).index()
+                $('.drag-bar').css({
+                    transform: `translateX(${step*(levelIndex-1)}px)`
+                })
+                $('.drag-bar-panal').html(arr[levelIndex - 1])
+
+                $('.drag-track').css({
+                    width: `${step*(levelIndex-1)}px`
+                })
+
+
+                $(`.point:lt(${levelIndex-1})`).addClass('active')
+                $(`.point:gt(${levelIndex-1})`).removeClass('active')
+
+                if (levelIndex <= 4) {
+                    $('.level-select-wrapped').removeClass('level-select-wrapped-warn')
+                    $('.drag-track').removeClass('drag-bar-active')
+                    $('.drag-bar').removeClass('drag-bar-active')
+
+
+                } else {
+                    $('.level-select-wrapped').addClass('level-select-wrapped-warn')
+                    $('.drag-track').addClass('drag-bar-active')
+                    $('.drag-bar').addClass('drag-bar-active')
+                }
+
+            }
+        )
+    </script>
+</body>
+
+</html>
